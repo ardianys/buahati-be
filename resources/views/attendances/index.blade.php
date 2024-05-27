@@ -43,7 +43,9 @@
                             @foreach($attendances as $item)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="px-6 py-4">{{ $loop->iteration }}</td>
-                                    <td class="px-6 py-4">{{ $item->photo }}</td>
+                                    <td class="px-6 py-4">
+                                      <img src="{{ asset('storage/' . $item->photo) }}" alt="Attendance Photo" width="100">
+                                    </td>
                                     <td class="px-6 py-4">
                                         <a href="{{ route('attendances.show', $item->id) }}" title="View Attendance"><button type="button" class="bg-indigo-600 hover:bg-indigo-800 text-white font-bold py-1 px-2 rounded">View</button></a>
                                         <a href="{{ route('attendances.edit', $item->id) }}" title="Edit Attendance"><button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">Edit</button></a>
@@ -58,7 +60,7 @@
                             @endforeach
                             </tbody>
                         </table>
-    
+
                         <div class="mt-6">
                             {!! $attendances->appends(['search' => Request::get('search')])->render() !!}
                         </div>

@@ -1,6 +1,6 @@
 <div>
     <label for="photo" class="block font-medium text-sm text-gray-700">{{ 'Photo' }}</label>
-    <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" id="photo" name="photo" type="text" value="{{ isset($attendance->photo) ? $attendance->photo : ''}}" >
+    <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" id="photo" name="photo" type="file" value="{{ isset($attendance->photo) ? $attendance->photo : ''}}" >
     {!! $errors->first('photo', '<p>:message</p>') !!}
 </div>
 

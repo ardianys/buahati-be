@@ -48,12 +48,25 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $requestData = $request->all();
-        
-        Attendance::create($requestData);
+      $requestData = $request->all();
 
-        return redirect('attendances')->with('flash_message', 'Attendance added!');
+      // Check if a file was uploaded
+      if ($request->hasFile('photo')) {
+        // Validate the uploaded file
+        $request->validate([
+          'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // Store the file and get its path
+        $path = $request->file('photo')->store('images', 'public');
+
+        // Add the path to the request data
+        $requestData['photo'] = $path;
+      }
+
+      Attendance::create($requestData);
+
+      return redirect('attendances')->with('flash_message', 'Attendance added!');
     }
 
     /**
@@ -94,9 +107,9 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $attendance = Attendance::findOrFail($id);
         $attendance->update($requestData);
 
