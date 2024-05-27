@@ -1,0 +1,1 @@
+php artisan crud:generate Attendances --fields='photo#string;'
