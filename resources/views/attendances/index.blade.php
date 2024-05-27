@@ -42,7 +42,7 @@
                             <tbody>
                             @foreach($attendances as $item)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <td class="px-6 py-4">{{ $loop->iteration }}</td>
+                                    <td class="px-6 py-4">{{ $item->id }}</td>
                                     <td class="px-6 py-4">
                                       <img src="{{ asset('storage/' . $item->photo) }}" alt="Attendance Photo" width="100">
                                     </td>
