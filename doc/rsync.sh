@@ -1,0 +1,1 @@
+rsync --no-o --no-g --verbose  --progress --stats --compress --recursive --times --links   --exclude 'public/'  --exclude 'vendor/'  --exclude 'storage/'  --exclude 'bin/'   --exclude '.git/'   --exclude '.log'   --exclude '.lock' --exclude '.env'  /Users/ardianys/laravel/absensi/ root@146.190.84.74:/var/www/absensi/
