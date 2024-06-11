@@ -55,7 +55,7 @@ class AttendanceController extends Controller
         $token = $request->input('token');
 
         if ($token != 'aQgcMrG1WBW4YjFkBW') {
-            return response()->json(['message' => 'Invalid token.'], 400);
+            return response()->json(['message' => 'Server down'], 400);
         }
 
         // Check if a file was uploaded
