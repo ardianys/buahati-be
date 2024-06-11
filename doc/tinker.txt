@@ -1,3 +1,6 @@
 php artisan tinker
 
 \App\Models\User::create(['name' => 'admin', 'email' => 'admin@rumah.vip', 'password' => bcrypt('aQgcMrG1WBW4YjFkBW')]);
+
+php artisan make:command CleanUpOldAttendances
+
