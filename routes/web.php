@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/attendances', \App\Http\Controllers\AttendanceController::class);
+Route::middleware(['auth.basic'])->resource('/attendances', \App\Http\Controllers\AttendanceController::class);
