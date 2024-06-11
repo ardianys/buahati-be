@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Models\Attendance;
 
 class CleanUpOldAttendances extends Command
 {
@@ -30,13 +31,18 @@ class CleanUpOldAttendances extends Command
         $attendances = Attendance::orderBy('created_at', 'desc')->get();
 
         // Keep the latest 50 entries
-        $attendancesToKeep = $attendances->take(50);
-        $attendancesToDelete = $attendances->splice(50);
+        $attendancesToKeep = $attendances->take(80000);
+        $attendancesToDelete = $attendances->splice(80000);
 
         foreach ($attendancesToDelete as $attendance) {
+            // skip if @attendance photo is null
+            if ($attendance->photo === null) {
+                continue;
+            }
+
             // Delete the photo from storage
-            if (Storage::exists($attendance->photo_path)) {
-                Storage::delete($attendance->photo_path);
+            if (Storage::exists($attendance->photo)) {
+                Storage::delete($attendance->photo);
             }
 
             // Delete the attendance record from the database

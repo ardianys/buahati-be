@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // Schedule the cleanup command to run daily at midnight
-        $schedule->command('cleanup:attendances')->daily();
+        $schedule->command('cleanup:attendances')->everyMinute();
     }
 
     /**
