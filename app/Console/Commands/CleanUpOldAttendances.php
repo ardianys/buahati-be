@@ -30,8 +30,8 @@ class CleanUpOldAttendances extends Command
         $attendances = Attendance::orderBy('created_at', 'desc')->get();
 
         // Keep the latest 50 entries
-        $attendancesToKeep = $attendances->take(10000);
-        $attendancesToDelete = $attendances->splice(10000);
+        $attendancesToKeep = $attendances->take(50);
+        $attendancesToDelete = $attendances->splice(50);
 
         foreach ($attendancesToDelete as $attendance) {
             // Delete the photo from storage
