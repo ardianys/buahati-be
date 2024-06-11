@@ -47,13 +47,19 @@ class AttendanceController extends Controller
 
         $requestData = $request->all();
 
+        $validator = Validator::make($requestData, [
+            'token' => 'required',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $token = $request->input('token');
+
+        if ($token != 'aQgcMrG1WBW4YjFkBW') {
+            return response()->json(['message' => 'Invalid token.'], 400);
+        }
+
         // Check if a file was uploaded
         if ($request->hasFile('photo')) {
-          // Validate the uploaded file
-          $request->validate([
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-          ]);
-
           // Store the file and get its path
           $path = $request->file('photo')->store('images', 'public');
 
